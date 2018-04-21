@@ -353,6 +353,63 @@ session.open()
 									}
 								}
 							}
+							
+							// Alternative dimensions and measures
+
+							if( prop.boxplotDef.qHyperCubeDef.hasOwnProperty("qLayoutExclude")) {
+								
+								// Object dimension labels
+								// New key for the expression, only string.
+							
+								if( prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.hasOwnProperty("qDimensions")) {
+									var dlen = prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions.length;
+									for (var i = 0; i < dlen; i++) {
+										if(!(prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.hasOwnProperty("qLabelExpression")) && 
+											prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.hasOwnProperty("qFieldLabels")) {
+											if(prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qFieldLabels[0].length >0) {
+												writeLine(prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qFieldLabels[0]);
+												if( mode == 'write' ) {
+													prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qLabelExpression = 
+														gh.toTransString(prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qFieldLabels[0]);
+												}
+											}
+										} else {
+											if( mode == 'undo' ) {
+												prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qFieldLabels[0] = 
+													gh.revertString(prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qLabelExpression);
+												delete prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qLabelExpression;
+											}
+										}
+									}		
+								}
+								
+								// Object measure labels						
+								// New key for the expression, only string.
+								
+								if( prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.hasOwnProperty("qMeasures")) {
+									var mlen = prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures.length;
+									for (var j = 0; j < mlen; j++) {
+										if(!( prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.hasOwnProperty("qLabelExpression"))&& 
+											prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.hasOwnProperty("qLabel")) {
+											writeLine(prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabel);
+											if( mode == 'write' ) {
+												prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabelExpression = 
+													gh.toTransString(prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabel);
+											}
+										} else {
+											if( mode == 'undo' ) {
+												prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabel = 
+													gh.revertString(prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabelExpression);
+												delete prop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabelExpression;
+											}
+										}
+									}
+								}
+							}	
+							
+							
+							
+							
 						}
 						
 						obj.setProperties(prop)

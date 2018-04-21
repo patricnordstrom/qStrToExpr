@@ -356,6 +356,60 @@ session.open()
 							}
 						}
 					}
+					
+					// Alternative dimensions and measures
+
+					if( visprop.boxplotDef.qHyperCubeDef.hasOwnProperty("qLayoutExclude")) {
+						
+						// Object dimension labels
+						// New key for the expression, only string.
+					
+						if( visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.hasOwnProperty("qDimensions")) {
+							var dlen = visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions.length;
+							for (var i = 0; i < dlen; i++) {
+								if(!(visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.hasOwnProperty("qLabelExpression")) && 
+									visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.hasOwnProperty("qFieldLabels")) {
+									if(visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qFieldLabels[0].length >0) {
+										writeLine(visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qFieldLabels[0]);
+										if( mode == 'write' ) {
+											visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qLabelExpression = 
+												gh.toTransString(visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qFieldLabels[0]);
+										}
+									}
+								} else {
+									if( mode == 'undo' ) {
+										visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qFieldLabels[0] = 
+											gh.revertString(visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qLabelExpression);
+										delete visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qDimensions[i].qDef.qLabelExpression;
+									}
+								}
+							}		
+						}
+						
+						// Object measure labels						
+						// New key for the expression, only string.
+						
+						if( visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.hasOwnProperty("qMeasures")) {
+							var mlen = visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures.length;
+							for (var j = 0; j < mlen; j++) {
+								if(!( visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.hasOwnProperty("qLabelExpression"))&& 
+									visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.hasOwnProperty("qLabel")) {
+									writeLine(visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabel);
+									if( mode == 'write' ) {
+										visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabelExpression = 
+											gh.toTransString(visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabel);
+									}
+								} else {
+									if( mode == 'undo' ) {
+										visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabel = 
+											gh.revertString(visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabelExpression);
+										delete visprop.boxplotDef.qHyperCubeDef.qLayoutExclude.qHyperCubeDef.qMeasures[j].qDef.qLabelExpression;
+									}
+								}
+							}
+						}
+					}	
+					
 				}
 							
 				obj.setProperties(visprop)							
