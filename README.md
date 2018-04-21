@@ -5,7 +5,7 @@ A set of Enigma scripts for extracting and converting strings in Qlik Sense apps
 * Write: Converts strings to Qlik expressions `=$(Translate('Any string'))`
 * Undo: Restores converted expressions back to strings
 
-Main bat file runs the scripts and merges csv files into one.
+The main bat file runs all scripts and merges the csv files into one.
 
 # Install
 * Install [enigma.js](https://github.com/qlik-oss/enigma.js)
@@ -25,4 +25,4 @@ Example: .\qStrToExpr.bat read LabelExtract
 * Make a copy of the app before running the script
 
 # Translating Sense apps
-The script can be used as a starting point for producing a multi lingual Qlik Sense app. The example Sense app contains a link to a Google Spreadsheet that contains the string index and auto translated strings `=GoogleTranslate($A2,$A$1,B$1)` to a number of languages. is based More info on the subject on translating apps [Handling Multiple Languages](https://community.qlik.com/blogs/qlikviewdesignblog/2012/11/30/handling-multiple-languages) by Charles Bannon.
+The script can be used as a starting point for producing a multi lingual Qlik Sense app. The example Sense app contains a link to a Google Spreadsheet that contains the string index and auto translated strings `=GoogleTranslate($A2,$A$1,B$1)` to a number of languages. More info on the subject on translating apps [Handling Multiple Languages](https://community.qlik.com/blogs/qlikviewdesignblog/2012/11/30/handling-multiple-languages) by Charles Bannon.
