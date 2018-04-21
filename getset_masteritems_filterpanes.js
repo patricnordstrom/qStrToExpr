@@ -65,7 +65,11 @@ session.open()
 						tree.qChildren[k].qProperty.title = gh.convStrToExpr(tree.qChildren[k].qProperty.title,mode);	
 					}
 					
-					// Filter pane title needs also to be set.
+					// Filter pane title, subtitle and footnote
+
+					writeLine(tree.qProperty.title);	
+					writeLine(tree.qProperty.subtitle);
+					writeLine(tree.qProperty.footnote);														
 					tree.qProperty.title = gh.convStrToExpr(tree.qProperty.title,mode);					
 					tree.qProperty.subtitle = gh.convStrToExpr(tree.qProperty.subtitle,mode);
 					tree.qProperty.footnote = gh.convStrToExpr(tree.qProperty.footnote,mode);		

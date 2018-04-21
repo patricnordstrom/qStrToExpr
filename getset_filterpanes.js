@@ -71,13 +71,17 @@ session.open()
 						.then( tree => {
 							for (var k = 0; k < tree.qChildren.length; k++) {
 								writeLine(tree.qChildren[k].qProperty.title);
-								tree.qChildren[k].qProperty.title = gh.strToExpr(tree.qChildren[k].qProperty.title);	
+								tree.qChildren[k].qProperty.title = gh.convStrToExpr(tree.qChildren[k].qProperty.title,mode);	
 							}
 						
-							// Filter pane title needs also to be set.
-							tree.qProperty.title = gh.strToExpr(tree.qProperty.title);					
-							tree.qProperty.subtitle = gh.strToExpr(tree.qProperty.subtitle);
-							tree.qProperty.footnote = gh.strToExpr(tree.qProperty.footnote);		
+							// Filter pane title, subtitle and footnote
+
+							writeLine(tree.qProperty.title);	
+							writeLine(tree.qProperty.subtitle);
+							writeLine(tree.qProperty.footnote);														
+							tree.qProperty.title = gh.convStrToExpr(tree.qProperty.title,mode);					
+							tree.qProperty.subtitle = gh.convStrToExpr(tree.qProperty.subtitle,mode);
+							tree.qProperty.footnote = gh.convStrToExpr(tree.qProperty.footnote,mode);		
 							
 							obj.setFullPropertyTree(tree)
 							.then(() => {
