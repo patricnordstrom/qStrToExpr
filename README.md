@@ -9,6 +9,7 @@ The main bat file runs all scripts and merges the csv files into one.
 
 ## Install
 * Install [enigma.js](https://github.com/qlik-oss/enigma.js)
+* Install minimist `npm -i minimist`
 * Download zip file and extract to folder
 
 ## Run
@@ -29,6 +30,7 @@ Example: node getset_masteritems_filterpanes.js -m=read -a LabelExtract
 * Modifies the data structure of the app, might break in older or younger versions.
 * Make a copy of the app before running the script.
 * Only strings that can be expressions in the UI is handled.
+* LabelExtract.qvf is a example app with strings, LabelExtract_expr.qvf is the same app after conversion with strings as expressions.
 
 ## Strings
 * Sheet: title and description
