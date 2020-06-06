@@ -9,7 +9,7 @@ The main bat file runs all scripts and merges the csv files into one.
 
 ## Install
 * Install [enigma.js](https://github.com/qlik-oss/enigma.js)
-* Install minimist `npm -i minimist`
+* Install minimist `npm i minimist`
 * Download zip file and extract to folder
 
 ## Run
